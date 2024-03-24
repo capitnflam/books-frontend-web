@@ -1,8 +1,12 @@
 import { AuthorResult } from '@flaminc/books-types'
-import { Card, CardBody, Chip, Pagination, Spinner } from '@nextui-org/react'
 import { useQueries, useQuery } from '@tanstack/react-query'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+
+import { Pagination } from '@/components/pagination'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent } from '@/components/ui/card'
+import { Spinner } from '@/components/ui/expansions/spinner'
 
 import { getAuthorQuery } from '../queries/author/get'
 import { getBooksQueryPaginated } from '../queries/books/get'
@@ -52,16 +56,16 @@ export function Books() {
             return (
               <Link key={book.uri} to={book.uri}>
                 <Card className="transition-opacity hover:opacity-80">
-                  <CardBody className="flex flex-row justify-between">
+                  <CardContent className="flex flex-row justify-between">
                     <div className="flex flex-col gap-2">
                       {book.title}
                       <div className="flex flex-row gap-2">
                         {book.authors.map((author) => {
                           if (authors[author]) {
                             return (
-                              <Chip key={author} size="sm">
+                              <Badge key={author} className="h-6 px-1 text-xs">
                                 {authors[author]?.name}
-                              </Chip>
+                              </Badge>
                             )
                           }
                           return null
@@ -72,21 +76,18 @@ export function Books() {
                       <span>22/12/2023</span>
                       <span>{book.isbn}</span>
                     </div>
-                  </CardBody>
+                  </CardContent>
                 </Card>
               </Link>
             )
           })}
         </div>
         <Pagination
-          className="self-end"
           total={data.meta.totalPages ?? Number.POSITIVE_INFINITY}
           page={pageParameter.page}
           onChange={(page) => {
             setPageParameter((previous) => ({ ...previous, page }))
           }}
-          showControls
-          showShadow
         />
       </div>
     )
