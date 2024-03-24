@@ -1,7 +1,8 @@
-import { Chip, Skeleton } from '@nextui-org/react'
 import { useMemo } from 'react'
 
-import { cn } from '../utils/cn'
+import { Badge } from '@/components/ui/badge'
+import { Skeleton } from '@/components/ui/skeleton'
+import { cn } from '@/utils/cn'
 
 import { BookCard } from './book-card'
 
@@ -50,9 +51,9 @@ export function BookLoading({ id }: { readonly id: string }) {
     const nbAuthors = getRandomInt(1, 3)
     return Array.from({ length: nbAuthors }).map((_, index) => {
       return (
-        <Chip key={`author_${id}_${index}`} variant="solid">
+        <Badge key={`author_${id}_${index}`}>
           <Skeleton className="h-4 w-24 rounded-lg" />
-        </Chip>
+        </Badge>
       )
     })
   }, [id])

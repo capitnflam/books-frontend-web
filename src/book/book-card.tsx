@@ -1,4 +1,5 @@
-import { Card, CardBody, CardHeader, Divider } from '@nextui-org/react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 
 interface Props {
   readonly className?: string
@@ -13,9 +14,11 @@ export function BookCard({
 }: Props) {
   return (
     <Card className={className}>
-      <CardHeader>{header}</CardHeader>
-      <Divider />
-      <CardBody>{children}</CardBody>
+      <CardHeader>
+        <CardTitle className="relative flex flex-row">{header}</CardTitle>
+      </CardHeader>
+      <Separator />
+      <CardContent>{children}</CardContent>
     </Card>
   )
 }

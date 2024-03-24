@@ -1,7 +1,7 @@
 import { BookResult } from '@flaminc/books-types'
 import { useQuery } from '@tanstack/react-query'
 
-import { getBook } from '../../services/book/get'
+import { getBook } from '@/services/book/get'
 
 export function getBookQuery(
   uri: string,

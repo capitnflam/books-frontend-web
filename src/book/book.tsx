@@ -1,16 +1,19 @@
-import {
-  ArrowPathIcon,
-  LinkIcon,
-  PencilIcon,
-} from '@heroicons/react/24/outline'
-import { Chip, Image, Link, Skeleton, Tooltip } from '@nextui-org/react'
 import { useQueries, useQuery } from '@tanstack/react-query'
+import { Link as LinkIcon, RefreshCcw as RefreshCcwIcon } from 'lucide-react'
 import { useCallback, useMemo } from 'react'
-import { Link as RoutedLink, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
-import { Markdown } from '../components/markdown'
-import { getAuthorQuery } from '../queries/author/get'
-import { getBookQuery } from '../queries/book/get'
+import { Markdown } from '@/components/markdown'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
+import { getAuthorQuery } from '@/queries/author/get'
+import { getBookQuery } from '@/queries/book/get'
 
 import { BookCard } from './book-card'
 import { BookEdit } from './book-edit'
@@ -37,7 +40,7 @@ export function Book() {
   const cover = useMemo(() => {
     if (book) {
       if (book?.coverURL) {
-        return <Image alt={book.title} src={book.coverURL} />
+        return <img alt={book.title} src={book.coverURL} />
       }
       return (
         <span className="h-auto w-auto whitespace-nowrap bg-yellow-100 text-black">
@@ -61,57 +64,47 @@ export function Book() {
               {cover}
             </div>
             <div className="flex w-full flex-col items-center">
-              <Link
-                className="text-3xl font-bold"
-                as={RoutedLink}
-                to={book?.uri}
-                anchorIcon={<LinkIcon className="h-4" />}
-                showAnchorIcon
-              >
-                {book?.title}
+              <Link className="flex flex-row gap-2" to={book?.uri}>
+                <span className="text-3xl font-bold">{book?.title}</span>
+                <LinkIcon className="m-auto h-4" />
               </Link>
               <div className="m-2 flex w-full flex-wrap justify-center gap-2">
                 {authors.map((author, index) =>
                   author.data ? (
                     <Link
                       key={`${author.data?.uri}_${index}`}
-                      as={RoutedLink}
                       to={author.data?.uri}
                     >
-                      <Chip variant="solid">{author.data?.name}</Chip>
+                      <Badge>{author.data?.name}</Badge>
                     </Link>
                   ) : (
-                    <Chip variant="solid" key={index}>
+                    <Badge key={index}>
                       <Skeleton className="h-4 w-24 rounded-lg" />
-                    </Chip>
+                    </Badge>
                   ),
                 )}
               </div>
             </div>
-            <div className="absolute right-0 top-0 mr-4 mt-4 flex flex-row gap-2">
-              <BookEdit id={id}>
-                {/* FIXME: disable tooltip due to bug: https://github.com/nextui-org/nextui/issues/1759 */}
-                {/* <Tooltip content="Edit"> */}
-                <PencilIcon className="h-6 w-6 hover:cursor-pointer" />
-                {/* </Tooltip> */}
-              </BookEdit>
-
-              <Tooltip content="Refresh">
-                <ArrowPathIcon
-                  className={`h-6 w-6 ${
-                    isRefetching ? 'animate-spin' : ''
-                  } hover:animate-spin hover:cursor-pointer`}
-                  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-                  onClick={refreshOnDemand}
-                />
-              </Tooltip>
+            <div className="absolute right-0 top-0 mr-4 flex flex-row gap-4">
+              <BookEdit id={id} />
+              <Button variant="link" className="m-0 p-0">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <RefreshCcwIcon
+                      className={`h-6 w-6 ${
+                        isRefetching ? 'animate-spin' : ''
+                      } hover:animate-spin hover:cursor-pointer`}
+                      onClick={refreshOnDemand}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent>Refresh</TooltipContent>
+                </Tooltip>
+              </Button>
             </div>
           </>
         }
       >
-        {book?.synopsis && (
-          <Markdown className="mx-auto max-w-[80%]">{book.synopsis}</Markdown>
-        )}
+        <Markdown className="mx-auto max-w-[80%]">{book.synopsis}</Markdown>
       </BookCard>
     )
   }

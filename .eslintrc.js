@@ -11,6 +11,13 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.lint.json',
   },
+  settings: {
+    'import/resolver': {
+      typescript: {
+        project: './tsconfig.json',
+      },
+    },
+  },
   rules: {
     'unicorn/prevent-abbreviations': [
       'error',
@@ -21,5 +28,34 @@ module.exports = {
       },
     ],
     'security/detect-object-injection': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
   },
+  overrides: [
+    {
+      files: ['src/components/ui/**/*.tsx'],
+      rules: {
+        'react/prop-types': 'off',
+      },
+    },
+    {
+      files: ['*.tsx'],
+      rules: {
+        '@typescript-eslint/no-misused-promises': [
+          'error',
+          {
+            checksVoidReturn: {
+              attributes: false,
+            },
+          },
+        ],
+      },
+    },
+  ],
 }

@@ -8,8 +8,8 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 
-import { getBooks } from '../../services/books/get'
-import { PageParameter } from '../../types/page-parameter'
+import { getBooks } from '@/services/books/get'
+import { PageParameter } from '@/types/page-parameter'
 
 type UseInfiniteQueryParameters = Parameters<
   typeof useInfiniteQuery<

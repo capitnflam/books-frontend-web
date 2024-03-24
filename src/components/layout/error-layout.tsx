@@ -1,6 +1,6 @@
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom'
 
-import { Footer } from './footer'
+// import { Footer } from './footer'
 import { Header } from './header'
 
 export function ErrorLayout() {
@@ -27,7 +27,7 @@ export function ErrorLayout() {
           </div>
         )}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }
