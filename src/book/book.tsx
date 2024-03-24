@@ -3,6 +3,7 @@ import { Link as LinkIcon, RefreshCcw as RefreshCcwIcon } from 'lucide-react'
 import { useCallback, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
+import { Markdown } from '@/components/markdown'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -11,10 +12,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-
-import { Markdown } from '../components/markdown'
-import { getAuthorQuery } from '../queries/author/get'
-import { getBookQuery } from '../queries/book/get'
+import { getAuthorQuery } from '@/queries/author/get'
+import { getBookQuery } from '@/queries/book/get'
 
 import { BookCard } from './book-card'
 import { BookEdit } from './book-edit'

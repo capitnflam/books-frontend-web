@@ -7,11 +7,9 @@ import { Pagination } from '@/components/pagination'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { Spinner } from '@/components/ui/expansions/spinner'
-
-import { getAuthorQuery } from '../queries/author/get'
-import { getBooksQueryPaginated } from '../queries/books/get'
-import { PageParameter } from '../types/page-parameter'
-// import { cn } from '../utils/cn'
+import { getAuthorQuery } from '@/queries/author/get'
+import { getBooksQueryPaginated } from '@/queries/books/get'
+import { PageParameter } from '@/types/page-parameter'
 
 export function Books() {
   const [pageParameter, setPageParameter] = useState<PageParameter>({

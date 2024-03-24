@@ -37,9 +37,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-
-import { getBookQuery } from '../queries/book/get'
-import { updateBook } from '../services/book/update'
+import { getBookQuery } from '@/queries/book/get'
+import { updateBook } from '@/services/book/update'
 
 interface Props {
   readonly id: string

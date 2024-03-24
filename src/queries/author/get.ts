@@ -1,7 +1,7 @@
 import { AuthorResult } from '@flaminc/books-types'
 import { useQuery } from '@tanstack/react-query'
 
-import { getAuthor } from '../../services/author/get'
+import { getAuthor } from '@/services/author/get'
 
 export function getAuthorQuery(
   uri: string,
