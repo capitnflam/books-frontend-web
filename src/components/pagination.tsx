@@ -9,25 +9,12 @@ import {
 } from '@/components/ui/pagination'
 
 interface PaginationProps {
-  readonly className?: string
   readonly total: number
   readonly page: number
   readonly onChange: (page: number) => void
 }
 
-// {/* <Pagination
-//   className="self-end"
-//   total={data.meta.totalPages ?? Number.POSITIVE_INFINITY}
-//   page={pageParameter.page}
-//   onChange={(page) => {
-//     setPageParameter((previous) => ({ ...previous, page }))
-//   }}
-//   showControls
-//   showShadow
-// /> */}
-
 export function Pagination({
-  // className,
   total,
   page: inputPage,
   onChange,
