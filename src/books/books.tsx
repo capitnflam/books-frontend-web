@@ -1,21 +1,19 @@
 import { AuthorResult } from '@flaminc/books-types'
 import { useQueries, useQuery } from '@tanstack/react-query'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Pagination } from '@/components/pagination'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { Spinner } from '@/components/ui/expansions/spinner'
+import { usePageParameter } from '@/hooks/use-page-parameter'
 import { getAuthorQuery } from '@/queries/author/get'
 import { getBooksQueryPaginated } from '@/queries/books/get'
-import { PageParameter } from '@/types/page-parameter'
 
 export function Books() {
-  const [pageParameter, setPageParameter] = useState<PageParameter>({
-    page: 1,
-    limit: 10,
-  })
+  const [pageParameter, setPageParameter] = usePageParameter()
+
   const { data, error } = useQuery(
     getBooksQueryPaginated(pageParameter, {
       retry: false,
@@ -84,7 +82,10 @@ export function Books() {
           total={data.meta.totalPages ?? Number.POSITIVE_INFINITY}
           page={pageParameter.page}
           onChange={(page) => {
-            setPageParameter((previous) => ({ ...previous, page }))
+            setPageParameter((previous) => ({
+              ...previous,
+              page,
+            }))
           }}
         />
       </div>
