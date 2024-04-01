@@ -12,7 +12,10 @@ import { getAuthorQuery } from '@/queries/author/get'
 import { getBooksQueryPaginated } from '@/queries/books/get'
 
 export function Books() {
-  const [pageParameter, setPageParameter] = usePageParameter()
+  const [pageParameter, setPageParameter] = usePageParameter({
+    page: 1,
+    limit: 10,
+  })
 
   const { data, error } = useQuery(
     getBooksQueryPaginated(pageParameter, {
