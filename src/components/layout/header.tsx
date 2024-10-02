@@ -50,7 +50,7 @@ export function Header() {
                 'rounded-md p-1 focus:outline-none',
                 'disabled:pointer-events-none disabled:opacity-50',
                 'hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 data-[active]:bg-gray-900/50',
-                'dark:hover:bg-gray-800  dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-100/50',
+                'dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-100/50',
               )}
               asChild
             >
