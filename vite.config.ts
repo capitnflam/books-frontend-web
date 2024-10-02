@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 
+// eslint-disable-next-line unicorn/import-style
 import { resolve } from 'node:path'
 
 import react from '@vitejs/plugin-react'
