@@ -62,7 +62,7 @@
     "@commitlint/types": "19.5.0",
     "@faker-js/faker": "9.0.3",
     "@flaminc/eslint-plugin": "1.6.0",
-    "@flaminc/semantic-release-configs": "1.0.1",
+    "@flaminc/semantic-release-configs": "1.0.2",
     "@hookform/devtools": "4.3.1",
     "@tailwindcss/forms": "0.5.9",
     "@tailwindcss/typography": "0.5.15",
